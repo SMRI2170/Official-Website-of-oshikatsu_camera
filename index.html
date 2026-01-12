@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>推し撮りカメラ - 公式サイト</title>
+    <title>推し撮りカメラ - 究極の推し活ARアプリ</title>
+    <meta name="description" content="推しの画像を切り抜いて、ARで現実に召喚。推し活専用カメラアプリ「推し撮りカメラ」公式サイト。">
     <style>
         :root {
             --primary: #C4B5FD;
             --accent: #8B5CF6;
-            --bg: #F3F4F6;
-            --text: #111;
-            --border: 2px solid #111;
-            --shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            --bg: #F9FAFB;
+            --text: #1F2937;
+            --border-color: #111;
+            --border-width: 2px;
+            --shadow: 4px 4px 0px rgba(0,0,0,0.15);
         }
         body {
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
@@ -19,169 +21,295 @@
             color: var(--text);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.8;
         }
-        header {
-            background-color: white;
-            border-bottom: var(--border);
-            padding: 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        h1 {
-            font-size: 24px;
-            font-weight: 900;
-            margin: 0;
-            letter-spacing: 1px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .hero {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
-            border: var(--border);
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-            background-color: var(--primary); /* アイコン画像がない場合のプレースホルダー */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 40px;
-            color: white;
-        }
-        .tagline {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-        .download-btn {
+        
+        /* 共通コンポーネント */
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        .btn {
             display: inline-block;
             background-color: var(--text);
             color: white;
-            padding: 15px 30px;
+            padding: 12px 30px;
             border-radius: 50px;
-            text-decoration: none;
             font-weight: bold;
-            margin: 10px;
-            transition: transform 0.2s;
-            border: var(--border); /* 黒い縁取りでY2K感 */
+            border: var(--border-width) solid var(--text);
             box-shadow: var(--shadow);
         }
-        .download-btn:hover {
+        .btn:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.3);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+            background-color: var(--accent);
+            border-color: var(--accent);
         }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* ヘッダー */
+        header {
+            background-color: white;
+            border-bottom: var(--border-width) solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .logo { font-size: 20px; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 20px; font-size: 14px; font-weight: bold; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* ヒーローセクション */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: radial-gradient(circle at center, #fff 0%, var(--bg) 100%);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+        .hero-mockup {
+            width: 280px;
+            height: 500px;
+            background-color: #fff;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 40px;
+            margin: 0 auto 40px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-mockup::after {
+            content: "アプリ画面イメージ";
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        /* 機能紹介 */
+        .section { padding: 80px 0; }
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 900;
             margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 10px auto 0;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
         .feature-card {
             background: white;
-            border: var(--border);
+            border: var(--border-width) solid var(--border-color);
             border-radius: 16px;
-            padding: 20px;
+            padding: 30px;
             box-shadow: var(--shadow);
-            text-align: center;
+            transition: transform 0.3s;
         }
-        .feature-icon {
+        .feature-card:hover { transform: translateY(-5px); }
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            border: var(--border-width) solid var(--border-color);
+        }
+
+        /* 使い方ステップ */
+        .steps { margin-top: 40px; }
+        .step-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        .step-number {
             font-size: 40px;
-            color: var(--accent);
-            margin-bottom: 10px;
+            font-weight: 900;
+            color: var(--primary);
+            margin-right: 20px;
+            font-style: italic;
         }
-        h2 {
-            border-bottom: 4px solid var(--primary);
-            display: inline-block;
-            margin-bottom: 30px;
-        }
-        footer {
+
+        /* ダウンロードエリア */
+        .cta-section {
             background-color: var(--text);
             color: white;
-            padding: 40px 20px;
             text-align: center;
+            padding: 60px 20px;
+            margin-top: 60px;
         }
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-            margin: 0 10px;
+        .cta-section h2 { margin-bottom: 30px; }
+        .cta-btn {
+            background-color: white;
+            color: var(--text);
+            padding: 15px 40px;
+            border-radius: 8px;
             font-weight: bold;
+            margin: 10px;
+            display: inline-block;
+            border: 2px solid transparent;
         }
-        footer a:hover {
-            text-decoration: underline;
+        .cta-btn:hover {
+            background-color: var(--primary);
+            border-color: white;
         }
-        .copyright {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #888;
+
+        /* フッター */
+        footer {
+            background-color: white;
+            padding: 40px 0;
+            border-top: var(--border-width) solid var(--border-color);
+            font-size: 14px;
         }
-        /* Y2Kっぽい装飾 */
-        .sparkle {
-            color: var(--primary);
-            font-size: 24px;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .copyright { text-align: center; color: #888; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; } /* モバイルでは省略 */
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>推し撮りカメラ</h1>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <div style="width:24px; height:24px; background:var(--primary); border:2px solid #000; border-radius:4px;"></div>
+            推し撮りカメラ
+        </a>
+        <nav class="nav-links">
+            <a href="#features">機能</a>
+            <a href="#howto">使い方</a>
+            <a href="support.html">サポート</a>
+        </nav>
+    </div>
 </header>
 
-<div class="container">
-    <div class="hero">
-        <div class="app-icon">推</div>
-        <p class="tagline">✦ 推しといつでも一緒 ✦</p>
-        <p>究極の推し活カメラアプリ。<br>画像を切り抜いて、ARで世界中どこでも撮影しよう。</p>
+<section class="hero">
+    <div class="container">
+        <h1>次元を超えて、<br>推しと日常を撮ろう。</h1>
+        <p class="subtitle">画像切り抜き＆AR撮影アプリの決定版。<br>あなたのスマホが、推し専用の撮影スタジオに。</p>
         
-        <div style="margin-top: 30px;">
-            <a href="#" class="download-btn">🍎 App Store</a>
-            <a href="#" class="download-btn">🤖 Google Play</a>
+        <div class="hero-mockup">
+            <!-- 実際のアプリのスクリーンショットがあればここにimgタグで配置 -->
         </div>
-    </div>
 
-    <div style="text-align: center;">
-        <h2><span class="sparkle">✨</span> FEATURES <span class="sparkle">✨</span></h2>
+        <div class="download-area">
+            <a href="#" class="btn">今すぐダウンロード (Free)</a>
+        </div>
+        <p style="font-size: 12px; margin-top: 10px; color: #666;">iOS / Android 対応</p>
     </div>
+</section>
 
-    <div class="features">
-        <div class="feature-card">
-            <div class="feature-icon">✂️</div>
-            <h3>簡単切り抜き</h3>
-            <p>推しの画像を指でなぞるだけ。<br>背景を透明にして、あなただけのデジタルアクスタを作成できます。</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">📸</div>
-            <h3>AR撮影</h3>
-            <p>作った推しをカメラ越しに現実に召喚。<br>カフェでも旅行先でも、いつでも一緒にお出かけ。</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">📂</div>
-            <h3>専用アルバム</h3>
-            <p>撮影した写真はアプリ内のアルバムへ。<br>もちろんスマホの本体にも保存可能です。</p>
+<section id="features" class="section">
+    <div class="container">
+        <h2 class="section-title">FEATURES</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-box">✂️</div>
+                <h3>直感的な切り抜き</h3>
+                <p>写真フォルダの画像から、指でなぞるだけで簡単に推しを切り抜き。背景透過処理もスムーズです。</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box">🕶️</div>
+                <h3>Y2K デザイン</h3>
+                <p>2000年代レトロフューチャーを意識した、持っているだけでテンションが上がるUIデザイン。</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box">🌍</div>
+                <h3>どこでもAR撮影</h3>
+                <p>旅行先、カフェ、自宅のデスク。作った「デジタルアクスタ」をカメラ越しに配置して撮影できます。</p>
+            </div>
         </div>
     </div>
+</section>
+
+<section id="howto" class="section" style="background-color: white; border-top: 2px solid #111; border-bottom: 2px solid #111;">
+    <div class="container">
+        <h2 class="section-title">HOW TO USE</h2>
+        <div class="steps">
+            <div class="step-item">
+                <span class="step-number">01</span>
+                <div>
+                    <h4>画像を選ぶ</h4>
+                    <p>スマホ内の画像を選択し、推しの部分をなぞって切り抜きます。</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <span class="step-number">02</span>
+                <div>
+                    <h4>保存する</h4>
+                    <p>切り抜いた画像はアプリ内の「推し一覧」にデジタルアクスタとして保存されます。</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <span class="step-number">03</span>
+                <div>
+                    <h4>撮影へGO</h4>
+                    <p>推しを選択してカメラを起動。好きな場所に配置してシャッターを切るだけ！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="cta-section">
+    <h2>さあ、推しとお出かけしよう。</h2>
+    <a href="#" class="cta-btn">🍎 App Store</a>
+    <a href="#" class="cta-btn">🤖 Google Play</a>
 </div>
 
 <footer>
-    <nav>
-        <a href="terms.html">利用規約</a>
-        <a href="privacy.html">プライバシーポリシー</a>
-        <a href="support.html">お問い合わせ</a>
-    </nav>
-    <p class="copyright">&copy; 2026 Oshi Camera App. All rights reserved.</p>
+    <div class="container">
+        <div class="footer-links">
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="support.html">お問い合わせ</a>
+        </div>
+        <p class="copyright">&copy; 2026 Oshi Camera App. All rights reserved.</p>
+    </div>
 </footer>
 
 </body>
