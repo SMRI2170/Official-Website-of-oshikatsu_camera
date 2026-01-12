@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サポート - 推し活カメラ</title>
+    <!-- CSSはindex.htmlと共通のベースを使用 -->
+    <style>
+        :root { --primary: #C4B5FD; --accent: #8B5CF6; --bg: #F9FAFB; --text: #1F2937; --border: 2px solid #111; --shadow: 4px 4px 0px rgba(0,0,0,0.15); }
+        body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; line-height: 1.8; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        header { background: white; border-bottom: var(--border); padding: 20px; }
+        .logo { font-weight: 900; text-decoration: none; color: inherit; }
+        
+        .card {
+            background: white;
+            border: var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+        h1 { text-align: center; margin-bottom: 40px; }
+        h2 { font-size: 20px; border-left: 5px solid var(--primary); padding-left: 15px; margin-bottom: 20px; }
+        
+        /* FAQ Styles */
+        details { margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fff; }
+        summary { padding: 15px; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::after { content: "+"; font-size: 20px; color: var(--accent); }
+        details[open] summary::after { content: "-"; }
+        details p { padding: 0 15px 15px; margin: 0; color: #555; font-size: 14px; }
+
+        /* Contact Area */
+        .contact-box {
+            text-align: center;
+            background-color: #F3F4F6;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px dashed #ccc;
+        }
+        .mail-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .btn-back { display: block; text-align: center; margin-top: 40px; color: #666; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container" style="padding:0;">
+        <a href="index.html" class="logo">← 推し活カメラ</a>
+    </div>
+</header>
+
+<div class="container">
+    <h1>サポートセンター</h1>
+
+    <div class="card">
+        <h2>よくあるご質問 (FAQ)</h2>
+        
+        <details>
+            <summary>画像の切り抜きがうまくいきません</summary>
+            <p>背景と被写体の色が似ている場合、自動判定が難しいことがあります。エディタ画面の「消す」「修復」ブラシを使って手動で微調整を行ってください。</p>
+        </details>
+
+        <details>
+            <summary>撮影した写真はどこに保存されますか？</summary>
+            <p>アプリ内の「アルバム」タブに加え、スマートフォンの標準写真アプリ（カメラロール/ギャラリー）にも自動的に保存されます。</p>
+        </details>
+
+        <details>
+            <summary>機種変更時のデータ移行について</summary>
+            <p>本アプリはプライバシー保護のため、画像データをサーバーに送信せず、すべてお客様の端末内でのみ保存・管理しています。そのため、機種変更時のデータ引き継ぎ機能は現在提供しておりません。</p>
+        </details>
+        
+        <details>
+            <summary>アプリが落ちてしまいます</summary>
+            <p>高画質の画像を多数処理している場合、メモリ不足になることがあります。他のアプリを終了してから再度お試しください。</p>
+        </details>
+    </div>
+
+    <div class="card">
+        <h2>お問い合わせ</h2>
+        <p>不具合の報告、機能のご要望、その他ご質問は以下のメールアドレスまでご連絡ください。</p>
+        
+        <div class="contact-box">
+            <div>受付窓口</div>
+            <a href="mailto:devbyryosuke2025@gmail.com" class="mail-link">devbyryosuke2025@gmail.com</a>
+        </div>
+    </div>
+    
+    <a href="index.html" class="btn-back">トップページに戻る</a>
+</div>
+
+</body>
+</html>
