@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推し撮りカメラ - 公式サイト</title>
+    <style>
+        :root {
+            --primary: #C4B5FD;
+            --accent: #8B5CF6;
+            --bg: #F3F4F6;
+            --text: #111;
+            --border: 2px solid #111;
+            --shadow: 4px 4px 0px rgba(0,0,0,0.2);
+        }
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: white;
+            border-bottom: var(--border);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            border: var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            background-color: var(--primary); /* アイコン画像がない場合のプレースホルダー */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 40px;
+            color: white;
+        }
+        .tagline {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: var(--text);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: transform 0.2s;
+            border: var(--border); /* 黒い縁取りでY2K感 */
+            box-shadow: var(--shadow);
+        }
+        .download-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.3);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+        .feature-card {
+            background: white;
+            border: var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 40px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 4px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        footer {
+            background-color: var(--text);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+        /* Y2Kっぽい装飾 */
+        .sparkle {
+            color: var(--primary);
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>推し撮りカメラ</h1>
+</header>
+
+<div class="container">
+    <div class="hero">
+        <div class="app-icon">推</div>
+        <p class="tagline">✦ 推しといつでも一緒 ✦</p>
+        <p>究極の推し活カメラアプリ。<br>画像を切り抜いて、ARで世界中どこでも撮影しよう。</p>
+        
+        <div style="margin-top: 30px;">
+            <a href="#" class="download-btn">🍎 App Store</a>
+            <a href="#" class="download-btn">🤖 Google Play</a>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <h2><span class="sparkle">✨</span> FEATURES <span class="sparkle">✨</span></h2>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <div class="feature-icon">✂️</div>
+            <h3>簡単切り抜き</h3>
+            <p>推しの画像を指でなぞるだけ。<br>背景を透明にして、あなただけのデジタルアクスタを作成できます。</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📸</div>
+            <h3>AR撮影</h3>
+            <p>作った推しをカメラ越しに現実に召喚。<br>カフェでも旅行先でも、いつでも一緒にお出かけ。</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📂</div>
+            <h3>専用アルバム</h3>
+            <p>撮影した写真はアプリ内のアルバムへ。<br>もちろんスマホの本体にも保存可能です。</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <nav>
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="support.html">お問い合わせ</a>
+    </nav>
+    <p class="copyright">&copy; 2026 Oshi Camera App. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
